@@ -60,7 +60,7 @@ public class ClickstreamEnrichment {
                         userActivity.updateSearch("");
                     return userActivity;
                 },
-                JoinWindows.of(1000), Serdes.Integer(), new UserActivitySerde(), new SearchSerde());
+                JoinWindows.of(1000).after(0), Serdes.Integer(), new UserActivitySerde(), new SearchSerde());
 
         userActivityKStream.to(Serdes.Integer(), new UserActivitySerde(), Constants.USER_ACTIVITY_TOPIC);
 
